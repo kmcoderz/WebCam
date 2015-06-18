@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+    	<title>WebCam</title>
+
+    	<!-- Bootstrap -->
+    	<link href="css/bootstrap.min.css" rel="stylesheet">
+    	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	    <!--[if lt IE 9]>
+	      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	    <![endif]-->
+	    <link href="css/common.css" rel="stylesheet">
+	    <!-- First, include the Webcam.js JavaScript Library -->
+		<script type="text/javascript" src="webcam.js"></script>
+	</head>
+  	<body>
+  		<div id="wrap">
+	  		<div class="container-fluid">
+	  		<h1 class="text-center">WebCam</h1>
+	  			<div class="row">
+	    			<div class="col-sm-6 text-center">
+	    				<center>
+		    				<div class="panel panel-primary" style="width:322px;">
+	      						<div class="panel-heading">Camera</div>
+	      						<div class="panel-body" id="my_camera" style="padding:0px;"></div>
+	    					</div>
+    					</center>
+	    				<script language="JavaScript">
+							Webcam.set({
+								width: 320,
+								height: 240,
+								image_format: 'jpeg',
+								jpeg_quality: 90
+							});
+							Webcam.attach( '#my_camera' );
+						</script>
+						<button type="button" class="btn btn-primary" onClick="take_snapshot()">Take Snapshot</button>
+					</div>
+	    			<div class="col-sm-6">
+	    				<center>
+		    				<div class="panel panel-primary" style="width:322px;">
+	      						<div class="panel-heading">Output</div>
+	      						<div class="panel-body" id="results" style="padding:0px;"></div>
+	    					</div>
+    					</center>
+					</div>
+	  			</div>
+			</div>
+		</div>
+		<script language="JavaScript">
+		function take_snapshot() {
+			// take snapshot and get image data
+			Webcam.snap( function(data_uri) {
+				// display results in page
+				document.getElementById('results').innerHTML = '<img src="'+data_uri+'"/>';
+			});
+			 
+		}
+		</script>
+		
+    	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	    <!-- Include all compiled plugins (below), or include individual files as needed -->
+	    <script src="js/bootstrap.min.js"></script>
+  	</body>
+</html>
